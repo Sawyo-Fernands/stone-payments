@@ -1,9 +1,10 @@
+import { ButtonComponent } from "../ButtonComponent";
 import { InputComponent } from "../InputComponent";
 import { LabelComponent } from "../LabelComponent";
-
+import { BiTransfer } from 'react-icons/bi'
 export function CurrencyCard() {
   return (
-    <div className="absolute top-32 left-0">
+    <div className="absolute top-28 left-0">
       <div className="flex items-center gap-3">
         <div className="flex  gap-1 flex-col">
           <LabelComponent>Dólar</LabelComponent>
@@ -34,7 +35,9 @@ export function CurrencyCard() {
           </div>
         </div>
       </div>
-      <div></div>
+      <div className="mt-5">
+        <ButtonComponent> <BiTransfer size={19} /> Converter</ButtonComponent>
+      </div>
     </div>
   );
 }
