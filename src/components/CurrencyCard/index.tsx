@@ -1,8 +1,37 @@
+import { useEffect, useState } from "react";
 import { ButtonComponent } from "../ButtonComponent";
 import { InputComponent } from "../InputComponent";
 import { LabelComponent } from "../LabelComponent";
 import { BiTransfer } from 'react-icons/bi'
+
+export interface CotacaoDolaType {
+    code:        string;
+    codein:      string;
+    name:        string;
+    high:        string;
+    low:         string;
+    varBid:      string;
+    pctChange:   string;
+    bid:         string;
+    ask:         string;
+    timestamp:   string;
+    create_date: Date;
+}
+
 export function CurrencyCard() {
+
+    const [dadosDolar,setDadosDolar] = useState<CotacaoDolaType>()
+    async function returnCotacaoDolar(){
+
+    const response = await fetch("https://economia.awesomeapi.com.br/last/USD-BRL");
+    const movies = await response.json();
+    setDadosDolar(movies.USDBRL)
+    }
+
+    useEffect(()=>{
+        returnCotacaoDolar()
+    },[])
+
   return (
     <div className="absolute top-28 left-0">
       <div className="flex items-center gap-3">
