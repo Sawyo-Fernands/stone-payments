@@ -4,68 +4,18 @@ import { InputComponent } from "../InputComponent";
 import { LabelComponent } from "../LabelComponent";
 import { BiTransfer } from 'react-icons/bi'
 import { formatPrice } from "@/utils/formatPrice";
-
-export interface CotacaoDolaType {
-    code:        string;
-    codein:      string;
-    name:        string;
-    high:        string;
-    low:         string;
-    varBid:      string;
-    pctChange:   string;
-    bid:         string;
-    ask:         string;
-    timestamp:   string;
-    create_date: Date;
-}
+import { useListResultDolar } from "@/hooks/useListResultDolar";
 
 export function CurrencyCard() {
 
-    const [dadosDolar,setDadosDolar] = useState<CotacaoDolaType>()
     const [valorReal,setValorReal] = useState('')
     const [impostoEstado,setImpostoEstado] = useState('')
     const [tipoConversao,setTipoConversao] = useState('dinheiro')
-    const [resultadoFinal,setResultadoFinal] = useState('')
 
-    console.log(resultadoFinal)
-    async function returnCotacaoDolar(){
-
-    const response = await fetch("https://economia.awesomeapi.com.br/last/USD-BRL");
-    const result = await response.json();
-    setDadosDolar(result.USDBRL)
-    }
-
-    useEffect(()=>{
-        returnCotacaoDolar()
-    },[])
-
-    function getValueDolarBrl(tipoCompra:string){
-        function getValueCartao(){
-          const result = Number(valorReal) * 
-         ( (Number(dadosDolar?.bid) + ((Number(impostoEstado)/100) * Number(dadosDolar?.bid)) + (0.064 * Number(dadosDolar?.bid))) * Number(dadosDolar?.bid))
-
-         setResultadoFinal(formatPrice(result))
-        }
-        function getValueDinheiro(){
-            const result = Number(valorReal) * 
-            (  (Number(dadosDolar?.bid) + ((Number(impostoEstado)/100) * Number(dadosDolar?.bid)) ) 
-            * (Number(dadosDolar?.bid) + (0.011 * Number(dadosDolar?.bid)) ) )
-
-            setResultadoFinal(formatPrice(result))
-        }
-
-        const objOptions : {[key:string] : ()=>void}= {
-            'dinheiro' : () =>getValueDinheiro(),
-            'cartao' : () =>getValueCartao()
-        }
-        const execFunction = objOptions[tipoCompra]
-
-        execFunction()
-    }
-
+    const { getValueDolarBrl, resultadoFinal, resetResult } = useListResultDolar({valorReal,impostoEstado})
   return (
     <div className="absolute top-28 left-0">
-      <div className="flex items-center gap-3">
+      <div className="flex items-center gap-3 sm:flex-col sm:gap-3">
         <div className="flex  gap-1 flex-col">
           <LabelComponent>Dólar</LabelComponent>
           <InputComponent value={valorReal} onChange={(e)=>setValorReal(e.target.value)} />
