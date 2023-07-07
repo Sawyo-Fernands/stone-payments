@@ -9,7 +9,7 @@ export function MainPage() {
       <Header />
 
       <main className="w-full h-full flex gap-1 relative">
-        <div className="w-1/2 h-full">
+        <div className="w-1/2 h-full sm:w-2/2">
           <CurrencyCard />
         </div>
         <div className="w-1/2 h-full flex items-center justify-start">
