@@ -3,8 +3,7 @@ import { FNCreateDataPtBR } from "@/utils/formatDate";
 import { useContext } from "react";
 
 export function Header() {
-  const { dadosDolar, setDadosDolar } = useContext(DolarContext);
-
+  const { dadosDolar } = useContext(DolarContext);
 
   return (
     <header>
