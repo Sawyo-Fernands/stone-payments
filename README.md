@@ -63,8 +63,6 @@ O layout está disponível no [figma][FIGMA_URL]
 - Utilize React
 - Utilize TypeScript
 - Crie um cliente HTTP com axios
-- Faça testes unitários dos seus componentes
-- Utilize uma bilbioteca de cache como swr ou react-query
 - Utlizar tailwind css
 - Publique sua aplicação em uma plataforma de deploy rápido ([vercel](https://zeit.co/)/[heroku](https://www.heroku.com)/[netlify](https://www.netlify.com)/outros)
 
