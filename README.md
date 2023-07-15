@@ -1,34 +1,85 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+<!-- 
+   CUIDADO 
 
-## Getting Started
+   Quando editar esse readme, tome cuidado com as tags <br/> 
+   elas são importantes para alinhar as imagens
+-->
 
-First, run the development server:
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-```
+<div align="center">
+   <img src=".github/brand.svg" height="90">
+</div>
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+# Desafio web
+O desafio é criar uma aplicação de conversão de valores de dólar para real. 
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+<img align="right" src=".github/currency.svg" width="370">
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+A aplicação terá duas etapas, uma para inserir o valor que se deseja converter e outra para mostrar os valores convertidos.
 
-## Learn More
+Para isso, você deve buscar a cotação na [API de moedas][QUOTATION_API].
 
-To learn more about Next.js, take a look at the following resources:
+A aplicação deve mostrar os seguintes dados:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+1. Cotação do dólar
+2. IOF
+3. Total em dólar sem imposto
+4. Total em dólar com imposto
+5. Total em real sem imposto
+6. Total em real com imposto
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+<br/>
 
-## Deploy on Vercel
+## Cálculo dos valores 
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+<img align="left" src=".github/calculate.svg" width="250">
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+### Comprando com dinheiro 
+
+
+`[(Valor em dólar) + (imposto do Estado)] x (valor do dólar + IOF da compra de dólar)`
+
+### Comprando com cartão 
+
+`[(Valor em dólar) + (imposto do Estado) + (IOF de transações internacionais)] x (valor do dólar)`
+
+<br/>
+<br/>
+
+## Possíveis dúvidas:
+
+- IOF é um imposto federal e tem como intuito ser um regulador da economia nacional. Em dinheiro, seu valor é 1,1%, e em cartão 6,4%
+- Nos EUA, cada Estado tem sua própria cobrança de impostos. Por exemplo, o imposto de Nevada é de 8,19%, já o de Nova Iorque é de 8,87%
+
+<br/>
+
+## Layout
+O layout está disponível no [figma][FIGMA_URL]
+
+[![figma-layout][FIGMA-IMAGE]][FIGMA_URL]
+
+## Requisitos
+- Utilize a fonte do layout
+- Utilize React
+- Utilize TypeScript
+- Crie um cliente HTTP com axios
+- Faça testes unitários dos seus componentes
+- Utilize uma bilbioteca de cache como swr ou react-query
+- Utlizar tailwind css
+- Publique sua aplicação em uma plataforma de deploy rápido ([vercel](https://zeit.co/)/[heroku](https://www.heroku.com)/[netlify](https://www.netlify.com)/outros)
+
+
+<br/>
+
+
+<br/>
+
+<!-- ~VARS~ -->
+<!-- API -->
+[QUOTATION_API]: https://docs.awesomeapi.com.br/api-de-moedas
+
+<!-- URLS -->
+[FIGMA_URL]: https://www.figma.com/file/y8IcDbllfaFAzXrEXR05PE/Teste-Front-Web-Stone
+
+<!-- ASSETS -->
+[FIGMA-IMAGE]: .github/figma-desafio.png
