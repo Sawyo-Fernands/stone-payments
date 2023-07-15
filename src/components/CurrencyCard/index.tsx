@@ -9,21 +9,23 @@ export function CurrencyCard() {
 
   const [valorReal,setValorReal] = useState('')
   const [impostoEstado,setImpostoEstado] = useState('')
-  const [tipoConversao,setTipoConversao] = useState('dinheiro')
 
   const { getValueDolarBrl, resultadoFinal, resetResult } = useListResultDolar({valorReal,impostoEstado})
-
   const render : {[ key:string ] : ReactNode }= {
     false:<Form 
     getValueDolarBrl={getValueDolarBrl} 
     impostoEstado={impostoEstado} 
     setImpostoEstado={setImpostoEstado}
-    setTipoConversao={setTipoConversao}
     setValorReal={setValorReal}
-    tipoConversao={tipoConversao}
     valorReal={valorReal}
      />,
-     true:<Result resetResult={resetResult} resultadoFinal={resultadoFinal} />
+     true:
+     <Result 
+     resetResult={resetResult} 
+     resultadoFinal={resultadoFinal} 
+     impostoEstado={impostoEstado} 
+     valorReal={valorReal}
+     />
   }
  ''
   return (

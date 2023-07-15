@@ -1,7 +1,8 @@
 'use client'
 
+import { DolarContext } from "@/context/infosDolarContext";
 import { formatPrice } from "@/utils/formatPrice";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 
 export interface CotacaoDolaType {
     code:        string;
@@ -24,25 +25,26 @@ interface useListResultDolarProps {
 
 export function useListResultDolar({valorReal,impostoEstado}:useListResultDolarProps) {
 
-    const [dadosDolar,setDadosDolar] = useState<CotacaoDolaType>()
+    const {dadosDolar,setDadosDolar} = useContext(DolarContext)
     const [resultadoFinal,setResultadoFinal] = useState('')
 
     async function returnCotacaoDolar(){
         const response = await fetch("https://economia.awesomeapi.com.br/last/USD-BRL");
         const result = await response.json();
+        console.log(result)
         setDadosDolar(result.USDBRL)
         }
 
         function getValueDolarBrl(tipoCompra:string){
             function getValueCartao(){
-              const result = Number(valorReal) * 
-             ( (Number(dadosDolar?.bid) + ((Number(impostoEstado)/100) * Number(dadosDolar?.bid)) + (0.064 * Number(dadosDolar?.bid))) * Number(dadosDolar?.bid))
+              const result = Number(valorReal.replace(",",'.')) * 
+             ( (Number(dadosDolar?.bid) + ((Number(impostoEstado.replace(",",'.'))/100) * Number(dadosDolar?.bid)) + (0.064 * Number(dadosDolar?.bid))) * Number(dadosDolar?.bid))
     
              setResultadoFinal(formatPrice(result))
             }
             function getValueDinheiro(){
-                const result = Number(valorReal) * 
-                (  (Number(dadosDolar?.bid) + ((Number(impostoEstado)/100) * Number(dadosDolar?.bid)) ) 
+                const result = Number(valorReal.replace(",",'.')) * 
+                (  (Number(dadosDolar?.bid) + ((Number(impostoEstado.replace(",",'.'))/100) * Number(dadosDolar?.bid)) ) 
                 * (Number(dadosDolar?.bid) + (0.011 * Number(dadosDolar?.bid)) ) )
     
                 setResultadoFinal(formatPrice(result))

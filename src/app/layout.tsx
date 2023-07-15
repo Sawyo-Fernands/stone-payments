@@ -1,3 +1,4 @@
+import { DolarContextProvider } from '@/context/infosDolarContext'
 import './globals.css'
 import { Roboto } from 'next/font/google'
 
@@ -14,8 +15,11 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en">
-      <body className={roboto.className}>{children}</body>
-    </html>
+    <DolarContextProvider>
+      <html lang="en">
+          <body className={roboto.className}>{children}</body>
+      </html>
+    </DolarContextProvider>
+   
   )
 }

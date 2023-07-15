@@ -3,28 +3,29 @@
 import { ButtonComponent } from "@/components/ButtonComponent";
 import { InputComponent } from "@/components/InputComponent";
 import { LabelComponent } from "@/components/LabelComponent";
+import { DolarContext } from "@/context/infosDolarContext";
 import { useListResultDolar } from "@/hooks/useListResultDolar";
+import { useContext, useState } from "react";
 import { BiTransfer } from "react-icons/bi";
 
 interface FormProps {
   valorReal: string;
   impostoEstado: string;
-  tipoConversao: string;
   setValorReal: (value: string) => void;
   setImpostoEstado: (value: string) => void;
-  setTipoConversao: (value: string) => void;
   getValueDolarBrl: (tipoCompra: string) => void;
 }
 
 export function Form({
   valorReal,
   impostoEstado,
-  tipoConversao,
-  setTipoConversao,
+
   getValueDolarBrl,
   setImpostoEstado,
   setValorReal,
 }: FormProps) {
+  const {tipoConversao,setTipoConversao} = useContext(DolarContext)
+
   return (
     <>
       <div className="flex items-center gap-3 sm:flex-col sm:gap-3">
