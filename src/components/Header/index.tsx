@@ -1,3 +1,5 @@
+'use client'
+
 import { DolarContext } from "@/context/infosDolarContext";
 import { FNCreateDataPtBR } from "@/utils/formatDate";
 import { useContext } from "react";
