@@ -3,7 +3,7 @@
 import { CurrencyCard } from "@/components/CurrencyCard";
 import { Header } from "@/components/Header";
 
-export function MainPage() {
+export default  function MainPage() {
   return (
     <div className="w-full h-full p-16 sm:p-5 md:p-10">
       <Header />
